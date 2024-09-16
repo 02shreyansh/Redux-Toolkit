@@ -40,8 +40,17 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
       saveToLocalStorage(state); 
     },
+    updateTodo:(state,action)=>{
+      const {id,text}=action.payload
+      state.todos=state.todos.map((todo)=>todo.id===id? {...todo,text}:todo);
+      saveToLocalStorage(state)
+    },
+    toggleTodo:(state,action)=>{
+      state.todos=state.todos.map((todo)=>todo.id===action.payload ? {...todo,completed:!todo.completed}: todo)
+      saveToLocalStorage(state)
+    }
   },
 });
 
-export const { addTodo, removeTodo } = todoSlice.actions;
+export const { addTodo, removeTodo,updateTodo,toggleTodo } = todoSlice.actions;
 export default todoSlice.reducer;

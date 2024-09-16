@@ -1,13 +1,12 @@
-import AddTo from "./Components/AddTo"
-import Todos from "./Components/Todos"
+import { Provider } from "react-redux"
+import { store } from "./app/store"
+import AddTodo from "./Components/AddTodo"
 
 function App() {
   return (
-    <>
-      
-      <AddTo/>
-      <Todos/>
-    </>
+    <Provider store={store}>
+      <AddTodo/>
+    </Provider>
   )
 }
 
